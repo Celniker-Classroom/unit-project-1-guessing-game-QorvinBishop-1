@@ -118,5 +118,17 @@ function resetButtons(){
     }
 }
 // Has a Give Up button that ends the round and sets the score to the range value
+document.getElementById("giveUpBtn").addEventListener("click", function(){
+    // Defines local variable range
+    let radios = document.getElementsByName("level");
+    let range = 3;
+    for (let i = 0; i < radios.length; i++){
+        if (radios[i].checked){
+            range = parseInt(radios[i].value);
+        }
+    }
+    updateScore(range);
+    resetButtons();
+})
 // Sees a live date and time display with month names, day suffixes, and updating seconds
 // Tracks round timing: fastest game played and average time per game
