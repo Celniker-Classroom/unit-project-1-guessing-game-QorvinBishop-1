@@ -131,4 +131,32 @@ document.getElementById("giveUpBtn").addEventListener("click", function(){
     resetButtons();
 })
 // Sees a live date and time display with month names, day suffixes, and updating seconds
+let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+let now = new Date();
+
+let monthName = months[now.getMonth()];
+let day = now.getDate();
+if (day === 1 || day === 21 || day === 31){
+    daySuffix = "st";
+}
+else if (day === 2 || day === 22){
+    daySuffix = "nd";
+}
+else if (day === 3 || day === 23){
+    daySuffix = "rd";
+}
+else{
+    daySuffix = "th";
+}
+
+let year = now.getFullYear();
+
+document.getElementById("date").textContent = monthName + " " + day + daySuffix + " " + year; 
+
+// Live Time
+/*
+let start = new Date().getTime();
+
+let elapsed = (new Date().getTime - start) / 1000
+*/
 // Tracks round timing: fastest game played and average time per game
