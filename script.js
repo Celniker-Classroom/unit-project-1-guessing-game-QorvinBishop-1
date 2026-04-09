@@ -1,6 +1,4 @@
 // add javascript here
-
-
 // Game state
 let answer = 0;
 let guessCount = 0;
@@ -95,7 +93,7 @@ function updateScore(score, gaveUp){
     totalGuesses += score;
     // Score for round and average
     document.getElementById("wins").textContent = "Total Wins: " + totalWins;
-    document.getElementById("avgScore").textContent = "Average Score: " + (totalGuesses/totalWins).toFixed(1) + " guesses";
+    document.getElementById("avgScore").textContent = "Average Score: " + (totalGuesses / totalWins).toFixed(1) + " guesses";
 
     // Update Leaderboard
     scores.push(score);
@@ -112,9 +110,16 @@ function updateScore(score, gaveUp){
     }
     // Only counts fastest time if not give up
     if (!gaveUp){
-        let timeFinished = updateTimer();
-        roundTimes.push(timeFinished);
+        let elapsed = parseFloat(((new Date().getTime() - startTime) / 1000).toFixed(1));
+        
+        roundTimes.push(elapsed);
+
+        // Average Time 
+        let totalTime = roundTimes.reduce((a,b) => a + b, 0);
+        let avgTime = (totalTime / roundTimes.length).toFixed(1);
+
         document.getElementById("fastest").textContent = "Fastest Game: " + Math.min(...roundTimes) + " seconds";
+        document.getElementById("avgTime").textContent = "Average Time: " + avgTime + " seconds";
     }
     
 }
