@@ -7,6 +7,8 @@ let guessCount = 0;
 let totalWins = 0;
 let totalGuesses = 0;
 let scores = [];
+
+let startTime;
 let roundTimes = [];
 
 // Enters their name (via prompt()) and sees it used in all game messages
@@ -28,6 +30,7 @@ document.getElementById("playBtn").addEventListener("click", function(){
     // Round setup
     // Pick answer
     answer = Math.floor(Math.random() * range) + 1;
+    startTime = new Date().getTime();
     guessCount = 0;
     // Disable and Enable buttons and radio choices
     document.getElementById("msg").textContent = playerName + ", guess a number between 1 and " + range;
@@ -87,12 +90,12 @@ document.getElementById("guessBtn").addEventListener("click", function(){
             // Tracks statistics: total wins, average score, and a sorted top-3 leaderboard
 
 // Only update score when win
-function updateScore(score){
+function updateScore(score, gaveUp){
     totalWins++;
     totalGuesses += score;
     // Score for round and average
     document.getElementById("wins").textContent = "Total Wins: " + totalWins;
-    document.getElementById("avgScore").textContent = "Average Score: " + (totalGuesses/totalWins).toFixed(1);
+    document.getElementById("avgScore").textContent = "Average Score: " + (totalGuesses/totalWins).toFixed(1) + " guesses";
 
     // Update Leaderboard
     scores.push(score);
@@ -107,8 +110,13 @@ function updateScore(score){
             leaderboard[i].textContent = "--";
         }
     }
-    roundTimes.push(updateTimer());
-    document.getElementById("fastest").textContent = "Fastest Game: " + Math.min(...roundTimes);
+    // Only counts fastest time if not give up
+    if (!gaveUp){
+        let timeFinished = updateTimer();
+        roundTimes.push(timeFinished);
+        document.getElementById("fastest").textContent = "Fastest Game: " + Math.min(...roundTimes) + " seconds";
+    }
+    
 }
 
 function resetButtons(){
@@ -130,7 +138,7 @@ document.getElementById("giveUpBtn").addEventListener("click", function(){
             range = parseInt(radios[i].value);
         }
     }
-    updateScore(range);
+    updateScore(range, true);
     resetButtons();
 })
 // Sees a live date and time display with month names, day suffixes, and updating seconds
@@ -154,13 +162,15 @@ else{
 
 let year = now.getFullYear();
 let date = monthName + " " + day + daySuffix + " " + year;
+
 // Live Time
-let start = new Date().getTime();
+
 function updateTimer(){
+    if (!startTime) return 0;
     let nowSec = new Date().getTime();
-    let elapsed = (nowSec - start) / 1000;
-    document.getElementById("date").textContent =  date + " " + elapsed.toFixed(0);
-    return elapsed.toFixed(0);
+    let elapsed = ((nowSec - startTime) / 1000).toFixed(0);
+    document.getElementById("date").textContent =  date + " " + elapsed + " seconds";
+    return elapsed;
 }
 
 let intervalId = setInterval(updateTimer, 1000);
