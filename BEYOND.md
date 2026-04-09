@@ -5,6 +5,6 @@ Implemented and linked confetti script (and centered confetti origin to game box
     <script
             src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.9.1/tsparticles.confetti.bundle.min.js"></script>
     <script src="script.js" defer></script>
-Function name (built in): confett
+Function name (built in): confetti
 This improves the game by giving an extra dopamine hit with the confetti when the player wins.
 

@@ -57,7 +57,8 @@ input[type="radio"] {
    font-size: 1.1em;
    font-weight: 500;
    line-height: 1.5;
-   padding: 5px 0px;
+   padding: 5px 0px 7px;
+   
 }
 input[type="text"] {
    display: flex;
@@ -94,8 +95,30 @@ button {
    cursor: pointer;
    transition: all 0.3s ease;
    text-transform: uppercase;
-   letter-spacing: 1px;
+   letter-spacing: 2px;
+
 }
 button:active {
    transform: scale(0.95);
+}
+button:disabled {
+   opacity: 0.5;
+   cursor: not-allowed;
+   transform: none;
+}
+
+#playBtn {
+   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+   color: white;
+   box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+#guessBtn {
+   background: linear-gradient(135deg, rgb(255, 238, 87) 0%, orange 100%);
+   color: rgb(201, 110, 0);
+   box-shadow: 0 4px 15px rgba(245, 87, 108, 0.4);
+}
+#giveUpBtn {
+   background: linear-gradient(135deg, #fa709a 0%, red 100%);
+   color: white;
+   box-shadow: 0 4px 15px rgba(250, 112, 154, 0.4);
 }
