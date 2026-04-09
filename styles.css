@@ -124,7 +124,7 @@ button:disabled {
 }
 
 .stats {
-   background: white;
+   background: #f8f9fa;
    border-radius: 15px;
    padding: 5px 0px 15px;
    margin-bottom: 20px;
@@ -134,9 +134,26 @@ button:disabled {
    font-size: 1em;
    font-weight: bold;
 }
-
-
 .stats h3 {
    color: #667eea;
+   font-size: 1.3em;
+}
+
+.leaderboard {
+   background: #f8f9fa;
+   border-radius: 15px;
+   padding: 10px;
+   display: grid;
+   justify-content: space-around;
+   gap: 10px;
+   flex: 1;
+   text-align: center;
+   font-size: 1em;
+   font-weight: bold;
+}
+.leaderboard h3 {
+   color: #667eea;
+   margin-bottom: 5px;
+   text-align: center;
    font-size: 1.3em;
 }
