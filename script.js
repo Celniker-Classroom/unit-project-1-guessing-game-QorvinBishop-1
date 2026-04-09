@@ -7,6 +7,7 @@ let guessCount = 0;
 let totalWins = 0;
 let totalGuesses = 0;
 let scores = [];
+let roundTimes = [];
 
 // Enters their name (via prompt()) and sees it used in all game messages
 let input_name = prompt("Enter your name");
@@ -106,6 +107,8 @@ function updateScore(score){
             leaderboard[i].textContent = "--";
         }
     }
+    roundTimes.push(updateTimer());
+    document.getElementById("fastest").textContent = "Fastest Game: " + Math.min(...roundTimes);
 }
 
 function resetButtons(){
@@ -150,13 +153,17 @@ else{
 }
 
 let year = now.getFullYear();
-
-document.getElementById("date").textContent = monthName + " " + day + daySuffix + " " + year; 
-
+let date = monthName + " " + day + daySuffix + " " + year;
 // Live Time
-/*
 let start = new Date().getTime();
+function updateTimer(){
+    let nowSec = new Date().getTime();
+    let elapsed = (nowSec - start) / 1000;
+    document.getElementById("date").textContent =  date + " " + elapsed.toFixed(0);
+    return elapsed.toFixed(0);
+}
 
-let elapsed = (new Date().getTime - start) / 1000
-*/
+let intervalId = setInterval(updateTimer, 1000);
+
 // Tracks round timing: fastest game played and average time per game
+
