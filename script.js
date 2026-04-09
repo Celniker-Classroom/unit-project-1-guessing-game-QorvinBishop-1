@@ -137,6 +137,7 @@ function resetButtons(){
         radios[i].disabled = false;
     }
 }
+
 // Has a Give Up button that ends the round and sets the score to the range value
 document.getElementById("giveUpBtn").addEventListener("click", function(){
     // Defines local variable range
@@ -160,10 +161,7 @@ function getDaySuffix(day){
     else return "th";
 }
 
-
-
 // Live Time
-
 function updateTimer(){
     let now = new Date();
     let monthName = months[now.getMonth()];
@@ -171,7 +169,12 @@ function updateTimer(){
     let daySuffix = getDaySuffix(day);
     let year = now.getFullYear();
     let date = monthName + " " + day + daySuffix + " " + year;
-    document.getElementById("date").textContent =  date + " " + new Date().getHours() + ":" + new Date().getMinutes() + ":" + new Date().getSeconds();
+    // Hours, mins, secs all have 2 digits
+    let hours = String(new Date().getHours()).padStart(2, '0');
+    let mins = String(new Date().getMinutes()).padStart(2, '0');
+    let secs = String(new Date().getSeconds()).padStart(2, '0');
+    // Combined date
+    document.getElementById("date").textContent =  date + " " + hours + ":" + mins + ":" + secs;
 }
 
 setInterval(updateTimer, 1000);
