@@ -122,3 +122,21 @@ button:disabled {
    color: white;
    box-shadow: 0 4px 15px rgba(250, 112, 154, 0.4);
 }
+
+.stats {
+   background: white;
+   border-radius: 15px;
+   padding: 5px 0px 15px;
+   margin-bottom: 20px;
+   display: grid;
+   gap: 10px;
+   text-align: center;
+   font-size: 1em;
+   font-weight: bold;
+}
+
+
+.stats h3 {
+   color: #667eea;
+   font-size: 1.3em;
+}
