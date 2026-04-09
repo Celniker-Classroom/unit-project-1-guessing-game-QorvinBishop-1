@@ -60,6 +60,11 @@ document.getElementById("guessBtn").addEventListener("click", function(){
     // Sees feedback on each guess: too high, too low, correct — plus hot/warm/cold proximity hints
     if (num === answer){
         document.getElementById("msg").textContent = "Correct! " + playerName + " got it in " + guessCount + " guesses!";
+        confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { x: 0.25, y: 0.45 },
+        });
         updateScore(guessCount);
         resetButtons();
     }
