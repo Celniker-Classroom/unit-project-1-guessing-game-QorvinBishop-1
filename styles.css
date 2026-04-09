@@ -77,3 +77,25 @@ input[type="text"] {
    border-color: #667eea;
    transform: scale(1.02);
 }
+
+.buttons {
+   display: flex;
+   gap: 10px;
+   margin-bottom: 20px;
+   flex-wrap: wrap;
+}
+button {
+   flex: 1;
+   padding: 12px 20px;
+   font-size: 1em;
+   font-weight: 600;
+   border: none;
+   border-radius: 10px;
+   cursor: pointer;
+   transition: all 0.3s ease;
+   text-transform: uppercase;
+   letter-spacing: 1px;
+}
+button:active {
+   transform: scale(0.95);
+}
