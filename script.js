@@ -109,18 +109,18 @@ function updateScore(score, gaveUp){
         }
     }
     // Only counts fastest time if not give up
-    if (!gaveUp){
-        let elapsed = parseFloat(((new Date().getTime() - startTime) / 1000).toFixed(1));
-        
-        roundTimes.push(elapsed);
 
-        // Average Time 
-        let totalTime = roundTimes.reduce((a,b) => a + b, 0);
-        let avgTime = (totalTime / roundTimes.length).toFixed(1);
+    let elapsed = parseFloat(((new Date().getTime() - startTime) / 1000).toFixed(1));
+    
+    roundTimes.push(elapsed);
 
-        document.getElementById("fastest").textContent = "Fastest Game: " + Math.min(...roundTimes) + " seconds";
-        document.getElementById("avgTime").textContent = "Average Time: " + avgTime + " seconds";
-    }
+    // Average Time 
+    let totalTime = roundTimes.reduce((a,b) => a + b, 0);
+    let avgTime = (totalTime / roundTimes.length).toFixed(1);
+
+    document.getElementById("fastest").textContent = "Fastest Game: " + Math.min(...roundTimes) + " seconds";
+    document.getElementById("avgTime").textContent = "Average Time: " + avgTime + " seconds";
+
     
 }
 
@@ -174,7 +174,7 @@ function updateTimer(){
     if (!startTime) return 0;
     let nowSec = new Date().getTime();
     let elapsed = ((nowSec - startTime) / 1000).toFixed(0);
-    document.getElementById("date").textContent =  date + " " + elapsed + " seconds";
+    document.getElementById("date").textContent =  date + " " + new Date().getHours() + ":" + new Date().getMinutes() + ":" + new Date().getSeconds();
     return elapsed;
 }
 
