@@ -108,7 +108,6 @@ function updateScore(score, gaveUp){
             leaderboard[i].textContent = "--";
         }
     }
-    // Only counts fastest time if not give up
 
     let elapsed = parseFloat(((new Date().getTime() - startTime) / 1000).toFixed(1));
     
@@ -148,37 +147,27 @@ document.getElementById("giveUpBtn").addEventListener("click", function(){
 })
 // Sees a live date and time display with month names, day suffixes, and updating seconds
 let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-let now = new Date();
 
-let monthName = months[now.getMonth()];
-let day = now.getDate();
-if (day === 1 || day === 21 || day === 31){
-    daySuffix = "st";
-}
-else if (day === 2 || day === 22){
-    daySuffix = "nd";
-}
-else if (day === 3 || day === 23){
-    daySuffix = "rd";
-}
-else{
-    daySuffix = "th";
+function getDaySuffix(day){
+    if (day === 1 || day === 21 || day === 31) return "st";
+    else if (day === 2 || day === 22) return "nd";
+    else if (day === 3 || day === 23) return "rd";
+    else return "th";
 }
 
-let year = now.getFullYear();
-let date = monthName + " " + day + daySuffix + " " + year;
+
 
 // Live Time
 
 function updateTimer(){
-    if (!startTime) return 0;
-    let nowSec = new Date().getTime();
-    let elapsed = ((nowSec - startTime) / 1000).toFixed(0);
+    let now = new Date();
+    let monthName = months[now.getMonth()];
+    let day = now.getDate();
+    let daySuffix = getDaySuffix(day);
+    let year = now.getFullYear();
+    let date = monthName + " " + day + daySuffix + " " + year;
     document.getElementById("date").textContent =  date + " " + new Date().getHours() + ":" + new Date().getMinutes() + ":" + new Date().getSeconds();
-    return elapsed;
 }
 
-let intervalId = setInterval(updateTimer, 1000);
-
-// Tracks round timing: fastest game played and average time per game
-
+setInterval(updateTimer, 1000);
+updateTimer(); // Call immediately so no 1 sec wait
